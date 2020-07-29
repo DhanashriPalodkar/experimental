@@ -13,6 +13,7 @@ require (
 	k8s.io/client-go v12.0.0+incompatible
 	knative.dev/pkg v0.0.0-20200528142800-1c6815d7e4c9
 	sigs.k8s.io/controller-runtime v0.5.2
+	sigs.k8s.io/yaml v1.2.0
 )
 
 // Knative deps (release-0.15)

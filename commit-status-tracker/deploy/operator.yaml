@@ -11,7 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,7 +30,7 @@ spec:
       serviceAccountName: commit-status-tracker
       containers:
         - name: commit-status-tracker
-          image: REPLACE_IMAGE
+          image: quay.io/kmcdermo/status-tracker:v0.0.1
           command:
           - commit-status-tracker
           imagePullPolicy: Always
@@ -44,3 +45,11 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "commit-status-tracker"
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/commit-status-tracker
+      volumes:
+        - name: config-volume
+          configMap:
+            name: status-tracker-repos
+

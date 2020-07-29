@@ -40,6 +40,7 @@ import (
 
 	"github.com/tektoncd/experimental/commit-status-tracker/pkg/apis"
 	"github.com/tektoncd/experimental/commit-status-tracker/pkg/controller"
+	"github.com/tektoncd/experimental/commit-status-tracker/pkg/repos"
 	"github.com/tektoncd/experimental/commit-status-tracker/version"
 )
 
@@ -97,6 +98,13 @@ func main() {
 	ctx := context.TODO()
 	// Become the leader before proceeding
 	err = leader.Become(ctx, "commit-status-tracker-lock")
+	if err != nil {
+		log.Error(err, "")
+		os.Exit(1)
+	}
+
+	log.Info("Configuring Git repo identification")
+	err = repos.Setup("/etc/commit-status-tracker/repos.yaml")
 	if err != nil {
 		log.Error(err, "")
 		os.Exit(1)
