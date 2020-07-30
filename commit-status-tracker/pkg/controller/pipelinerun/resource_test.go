@@ -132,9 +132,9 @@ func TestGetDriverName(t *testing.T) {
 		{"http://github.com/foo/bar", "github", ""},
 		{"https://githuB.com/foo/bar.git", "github", ""},
 		{"http://gitlab.com/foo/bar.git2", "gitlab", ""},
-		{"http://gitlab/foo/bar/", "", "unable to determine type of Git host from: http://gitlab/foo/bar/"},
-		{"https://gitlab.a.b/foo/bar/bar", "", "unable to determine type of Git host from: https://gitlab.a.b/foo/bar/bar"},
-		{"https://gitlab.org2/f.b/bar.git", "", "unable to determine type of Git host from: https://gitlab.org2/f.b/bar.git"},
+		{"http://gitlab/foo/bar/", "", "unable to identify driver from hostname: gitlab"},
+		{"https://gitlab.a.b/foo/bar/bar", "", "unable to identify driver from hostname: gitlab.a.b"},
+		{"https://gitlab.org2/f.b/bar.git", "", "unable to identify driver from hostname: gitlab.org2"},
 	}
 
 	for i, tt := range tests {

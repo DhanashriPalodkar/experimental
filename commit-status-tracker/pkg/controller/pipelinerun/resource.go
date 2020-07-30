@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/jenkins-x/go-scm/scm/factory"
 	pipelinev1alpha1 "github.com/tektoncd/pipeline/pkg/apis/pipeline/v1alpha1"
 	pipelinev1 "github.com/tektoncd/pipeline/pkg/apis/pipeline/v1beta1"
 )
@@ -97,8 +98,5 @@ func getDriverName(rawURL string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	if s := strings.TrimSuffix(u.Host, ".com"); s != u.Host {
-		return strings.ToLower(s), nil
-	}
-	return "", fmt.Errorf("unable to determine type of Git host from: %s", rawURL)
+	return factory.DefaultIdentifier.Identify(strings.ToLower(u.Host))
 }
