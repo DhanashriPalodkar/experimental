@@ -3,7 +3,7 @@ module github.com/tektoncd/experimental/commit-status-tracker
 go 1.14
 
 require (
-	github.com/jenkins-x/go-scm v1.5.142
+	github.com/jenkins-x/go-scm v1.5.151
 	github.com/operator-framework/operator-sdk v0.17.1
 	github.com/spf13/pflag v1.0.5
 	github.com/tektoncd/pipeline v0.13.2
